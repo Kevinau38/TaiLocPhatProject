@@ -3,7 +3,7 @@ const BUSINESS_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "Store",
   "name": "Tài Lộc Phát Showroom",
-  "description": "Chuyên cung cấp sỉ và lẻ thiết bị vệ sinh, gạch ốp lát, b��n chứa nước, và máy năng lượng mặt trời.",
+  "description": "Chuyên cung cấp sỉ và lẻ thiết bị vệ sinh, gạch ốp lát, bồn chứa nước, và máy năng lượng mặt trời.",
   "telephone": "+84963939286",
   "address": {
     "@type": "PostalAddress",
@@ -54,9 +54,14 @@ export function useSEO(title: string, description: string, path: string) {
     }
     script.innerHTML = JSON.stringify(BUSINESS_JSON_LD);
     return () => {
-      // Cleanup on unmount if needed, though for an SPA it might not be necessary
-      // unless components that set these tags are frequently mounted/unmounted.
-      // For page-level SEO, this cleanup might be optional.
+      // Cleanup on unmount to prevent tags from persisting across pages
+      if (metaDescription) metaDescription.remove();
+      if (ogTitle) ogTitle.remove();
+      if (ogDescription) ogDescription.remove();
+      if (ogUrl) ogUrl.remove();
+      if (ogType) ogType.remove();
+      const jsonLdScript = document.getElementById('json-ld-business');
+      if (jsonLdScript) jsonLdScript.remove();
     };
   }, [title, description, path]);
 }

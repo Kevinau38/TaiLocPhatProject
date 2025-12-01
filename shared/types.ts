@@ -3,7 +3,7 @@ export interface ApiResponse<T = unknown> {
   data?: T;
   error?: string;
 }
-export type ProductCategory = 'Thi��t bị vệ sinh' | 'Gạch ốp lát' | 'Bồn chứa nước' | 'Máy năng lư��ng mặt trời';
+export type ProductCategory = 'Thiết bị vệ sinh' | 'Gạch ốp lát' | 'Bồn chứa nước' | 'Máy năng lượng mặt trời';
 export interface Product {
   id: string;
   name: string;
