@@ -1,13 +1,20 @@
 import { HeroBanner } from '@/components/HeroBanner';
 import { ProductCard } from '@/components/ProductCard';
 import { MOCK_PRODUCTS } from '@shared/mock-data';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Star, Truck, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Product } from '@shared/types';
 export function HomePage() {
-  const highlightedProducts = MOCK_PRODUCTS.slice(0, 4);
+  // Get one product from each category for highlighting
+  const highlightedProducts = MOCK_PRODUCTS.reduce((acc, product) => {
+    if (!acc.some(p => p.category === product.category)) {
+      acc.push(product);
+    }
+    return acc;
+  }, [] as Product[]).slice(0, 4);
   const coreValues = [
     { icon: <ShieldCheck className="h-8 w-8 text-primary" />, title: 'Uy Tín' },
     { icon: <Star className="h-8 w-8 text-primary" />, title: 'Chất Lượng' },
@@ -27,7 +34,7 @@ export function HomePage() {
               transition={{ duration: 0.6 }}
               className="text-center"
             >
-              <h2 className="text-3xl md:text-4xl font-bold font-display tracking-tight">Sản Phẩm Nổi B���t</h2>
+              <h2 className="text-3xl md:text-4xl font-bold font-display tracking-tight">Sản Phẩm Nổi Bật</h2>
               <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
                 Những sản phẩm được khách hàng tin dùng và lựa chọn nhiều nhất tại Tài Lộc Phát.
               </p>
@@ -84,7 +91,7 @@ export function HomePage() {
                 transition={{ duration: 0.6 }}
               >
                 <h2 className="text-3xl md:text-4xl font-bold font-display tracking-tight">
-                  Sẵn Sàng Nâng T���m Không Gian Sống Của Bạn?
+                  Sẵn Sàng Nâng Tầm Không Gian Sống Của Bạn?
                 </h2>
                 <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
                   Chúng tôi trân trọng mời Quý khách đến thăm showroom để trải nghiệm sản phẩm và nhận tư vấn tốt nhất.

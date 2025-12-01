@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import { api } from '@/lib/api-client';
 import { Product } from '@shared/types';
 import { toast } from 'sonner';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 const categories = [
   { name: 'Tất cả', value: 'all', icon: <LayoutGrid className="h-5 w-5" /> },
   { name: 'Thiết bị vệ sinh', value: 'Thiết bị vệ sinh', icon: <Bath className="h-5 w-5" /> },
@@ -15,10 +16,12 @@ const categories = [
   { name: 'Bồn chứa nước', value: 'Bồn chứa nước', icon: <Droplets className="h-5 w-5" /> },
   { name: 'Máy năng lượng mặt trời', value: 'Máy năng lượng mặt trời', icon: <Sun className="h-5 w-5" /> },
 ];
+type SortByType = 'newest' | 'name-asc' | 'name-desc';
 export function ProductsPage() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sortBy, setSortBy] = useState<SortByType>('newest');
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
@@ -35,12 +38,25 @@ export function ProductsPage() {
     };
     fetchProducts();
   }, []);
-  const filteredProducts = useMemo(() => {
-    if (activeCategory === 'all') {
-      return products;
+  const filteredAndSortedProducts = useMemo(() => {
+    let filtered = activeCategory === 'all'
+      ? [...products]
+      : products.filter(p => p.category === activeCategory);
+    switch (sortBy) {
+      case 'name-asc':
+        filtered.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case 'name-desc':
+        filtered.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+      case 'newest':
+      default:
+        // Assuming MOCK_PRODUCTS is already sorted by creation time if it has a createdAt property
+        // For API data, this would depend on the backend sorting
+        break;
     }
-    return products.filter(p => p.category === activeCategory);
-  }, [activeCategory, products]);
+    return filtered;
+  }, [activeCategory, products, sortBy]);
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="py-16 md:py-24">
@@ -52,7 +68,7 @@ export function ProductsPage() {
             Khám phá bộ sưu tập sản phẩm chất lượng cao, đa dạng về mẫu mã và chủng loại.
           </p>
         </div>
-        <div className="mt-12 animate-slide-up">
+        <div className="mt-12 animate-slide-up space-y-6">
           <div className="flex flex-wrap justify-center gap-2 md:gap-4">
             {categories.map(category => (
               <Button
@@ -69,6 +85,18 @@ export function ProductsPage() {
               </Button>
             ))}
           </div>
+          <div className="flex justify-center">
+            <Select onValueChange={(value: SortByType) => setSortBy(value)} defaultValue={sortBy}>
+              <SelectTrigger className="w-[200px]">
+                <SelectValue placeholder="Sắp xếp theo" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="newest">Mới nhất</SelectItem>
+                <SelectItem value="name-asc">Tên: A-Z</SelectItem>
+                <SelectItem value="name-desc">Tên: Z-A</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {loading
@@ -79,7 +107,7 @@ export function ProductsPage() {
                   <Skeleton className="h-4 w-1/2" />
                 </div>
               ))
-            : filteredProducts.map((product, index) => (
+            : filteredAndSortedProducts.map((product, index) => (
                 <ProductCard
                   key={product.id}
                   product={product}
@@ -88,7 +116,7 @@ export function ProductsPage() {
                 />
               ))}
         </div>
-        {filteredProducts.length === 0 && !loading && (
+        {filteredAndSortedProducts.length === 0 && !loading && (
           <div className="text-center col-span-full mt-16 text-muted-foreground">
             <p>Không tìm thấy sản phẩm nào trong danh mục này.</p>
           </div>

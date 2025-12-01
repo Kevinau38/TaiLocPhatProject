@@ -3,11 +3,12 @@ export interface ApiResponse<T = unknown> {
   data?: T;
   error?: string;
 }
+export type ProductCategory = 'Thi��t bị vệ sinh' | 'Gạch ốp lát' | 'Bồn chứa nước' | 'Máy năng lư��ng mặt trời';
 export interface Product {
   id: string;
   name: string;
   description: string;
-  category: 'Thiết bị vệ sinh' | 'Gạch ốp lát' | 'Bồn chứa nước' | 'Máy năng lượng mặt trời';
+  category: ProductCategory;
   imageUrl: string;
 }
 export interface GalleryImage {
@@ -25,9 +26,9 @@ export interface Inquiry {
 // Types for Durable Object entities
 export interface ProductState {
   id: string;
-  name: string;
+  name:string;
   description: string;
-  category: string;
+  category: ProductCategory;
   imageUrl: string;
   createdAt: number;
 }
