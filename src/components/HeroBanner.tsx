@@ -27,7 +27,7 @@ export function HeroBanner() {
             className="mt-8 max-w-xl mx-auto"
           >
             <p className="text-lg text-foreground">
-              Chúng tôi chuyên cung cấp s�� và lẻ thiết bị vệ sinh, gạch ốp lát, bồn nước và máy năng lượng m���t trời.
+              Chúng tôi chuyên cung cấp sỉ và lẻ thiết bị vệ sinh, gạch ốp lát, bồn chứa nước và máy năng lượng mặt trời.
             </p>
           </motion.div>
           <motion.div

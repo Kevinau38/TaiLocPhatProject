@@ -104,10 +104,10 @@ export function ProductsPage() {
           <div className="flex justify-center">
             <Select onValueChange={handleSortChange} defaultValue={sortBy}>
               <SelectTrigger className="w-[200px]">
-                <SelectValue placeholder="Sắp xếp theo" />
+                <SelectValue placeholder="Sắp x���p theo" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="newest">M��i nhất</SelectItem>
+                <SelectItem value="newest">Mới nhất</SelectItem>
                 <SelectItem value="name-asc">Tên: A-Z</SelectItem>
                 <SelectItem value="name-desc">Tên: Z-A</SelectItem>
               </SelectContent>

@@ -9,7 +9,7 @@ import { trackPageView, logEvent } from '@/lib/analytics';
 export function GalleryPage() {
   useSEO(
     'Thư Viện Hình Ảnh - Tài Lộc Phát Showroom',
-    'Xem hình ảnh thực tế t��� showroom và các dự án đã hoàn thành của chúng tôi.',
+    'Xem hình ảnh thực tế từ showroom và các dự án đã hoàn thành của chúng tôi.',
     '/gallery'
   );
   useEffect(() => {
@@ -54,22 +54,22 @@ export function GalleryPage() {
           <GalleryGrid images={MOCK_GALLERY} onImageClick={openLightbox} />
         </div>
         <Sheet open={lightboxOpen} onOpenChange={setLightboxOpen}>
-          <SheetContent className="w-full sm:max-w-4xl lg:max-w-6xl p-0" side="bottom">
-            <SheetHeader className="p-4 border-b flex flex-row items-center justify-between">
+          <SheetContent className="w-full h-screen sm:max-w-full p-0" side="bottom">
+            <SheetHeader className="p-4 border-b flex flex-row items-center justify-between bg-background z-20">
               <SheetTitle>Xem hình ảnh ({currentIndex + 1} / {MOCK_GALLERY.length})</SheetTitle>
               <SheetClose className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
                 <X className="h-4 w-4" />
                 <span className="sr-only">Close</span>
               </SheetClose>
             </SheetHeader>
-            <div className="relative h-[80vh] flex items-center justify-center p-4 bg-muted/20">
-              <Button variant="ghost" size="icon" className="absolute left-4 top-1/2 -translate-y-1/2 z-10" onClick={prevImage}>
+            <div className="relative h-full w-full flex items-center justify-center p-4 bg-muted/20">
+              <Button variant="ghost" size="icon" className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/50 hover:bg-background/80" onClick={prevImage}>
                 <ArrowLeft className="h-6 w-6" />
               </Button>
               {selectedImage && (
-                <img src={selectedImage.imageUrl} alt={selectedImage.alt} className="max-w-full max-h-full object-contain" />
+                <img src={selectedImage.imageUrl} alt={selectedImage.alt} className="max-w-full max-h-full object-contain" loading="lazy" />
               )}
-              <Button variant="ghost" size="icon" className="absolute right-4 top-1/2 -translate-y-1/2 z-10" onClick={nextImage}>
+              <Button variant="ghost" size="icon" className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/50 hover:bg-background/80" onClick={nextImage}>
                 <ArrowRight className="h-6 w-6" />
               </Button>
             </div>

@@ -102,10 +102,10 @@ export function HomePage() {
                 transition={{ duration: 0.6 }}
               >
                 <h2 className="text-3xl md:text-4xl font-bold font-display tracking-tight">
-                  Sẵn Sàng Nâng T��m Không Gian Sống Của Bạn?
+                  Sẵn Sàng Nâng Tầm Không Gian Sống Của Bạn?
                 </h2>
                 <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-                  Chúng tôi trân trọng mời Quý khách đến thăm showroom để trải nghiệm sản phẩm và nhận tư vấn tốt nhất.
+                  Chúng tôi trân trọng m���i Quý khách đến thăm showroom để trải nghiệm sản phẩm và nhận tư vấn tốt nhất.
                 </p>
                 <div className="mt-8">
                   <Button asChild size="lg" className="btn-gradient text-lg px-8 py-6">

@@ -11,7 +11,7 @@ export function Footer() {
               <span className="font-bold text-xl font-display text-gradient">Tài Lộc Phát</span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              Tin cậy — Chất lư��ng — Giao nhanh
+              Tin cậy — Chất lượng — Giao nhanh
             </p>
           </div>
           <div className="md:col-span-1">
@@ -28,7 +28,7 @@ export function Footer() {
             <div className="mt-4 space-y-4 text-sm">
               <div className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-muted-foreground">624 Đường Hà Huy Giáp, Phường An Phú Đông, TP. Hồ Chí Minh</span>
+                <span className="text-muted-foreground">624 Đư��ng Hà Huy Giáp, Phường An Phú Đông, TP. Hồ Chí Minh</span>
               </div>
               <div className="flex items-start gap-3">
                 <Phone className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />

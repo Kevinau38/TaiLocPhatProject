@@ -21,7 +21,7 @@ export function ContactPage() {
             Liên Hệ Với Chúng Tôi
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Chúng tôi luôn sẵn sàng lắng nghe và tư vấn. Hãy kết n���i với chúng tôi!
+            Chúng tôi luôn sẵn sàng lắng nghe và tư vấn. Hãy kết nối với chúng tôi!
           </p>
         </div>
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -32,8 +32,8 @@ export function ContactPage() {
                   <MapPin className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold">Địa chỉ Showroom</h3>
-                  <p className="text-muted-foreground">624 Đường Hà Huy Giáp, Phường An Phú Đông, TP. H�� Chí Minh</p>
+                  <h3 className="text-lg font-semibold">Đ���a chỉ Showroom</h3>
+                  <p className="text-muted-foreground">624 Đường Hà Huy Giáp, Phường An Phú Đông, TP. Hồ Chí Minh</p>
                 </div>
               </CardContent>
             </Card>
@@ -64,12 +64,12 @@ export function ContactPage() {
               </CardContent>
             </Card>
             <div className="aspect-video rounded-lg overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1575449340399-0814a6db3952?q=80&w=2070&auto=format&fit=crop" alt="Map placeholder" className="w-full h-full object-cover" />
+                <img src="https://images.unsplash.com/photo-1575449340399-0814a6db3952?q=80&w=2070&auto=format&fit=crop" alt="Map placeholder" className="w-full h-full object-cover" loading="lazy" />
             </div>
           </div>
           <div className="animate-slide-up animation-delay-200">
             <Card className="p-6 sm:p-8">
-              <h2 className="text-2xl font-bold font-display">Gửi Y��u Cầu Tư Vấn</h2>
+              <h2 className="text-2xl font-bold font-display">Gửi Yêu Cầu Tư Vấn</h2>
               <p className="mt-2 text-muted-foreground">Điền thông tin vào form dưới đây, chúng tôi sẽ liên hệ lại với bạn sớm nhất.</p>
               <div className="mt-6">
                 <ContactForm />

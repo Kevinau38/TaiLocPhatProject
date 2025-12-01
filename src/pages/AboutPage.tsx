@@ -8,7 +8,7 @@ import { trackPageView } from '@/lib/analytics';
 export function AboutPage() {
   useSEO(
     'Về Chúng Tôi - Tài Lộc Phát Showroom',
-    'Tìm hiểu về sứ mệnh, giá trị cốt lõi và địa chỉ showroom của Tài Lộc Phát tại TP. Hồ Ch�� Minh.',
+    'Tìm hiểu về sứ mệnh, giá trị cốt lõi và địa chỉ showroom của Tài Lộc Phát tại TP. Hồ Chí Minh.',
     '/about'
   );
   useEffect(() => {
@@ -41,7 +41,7 @@ export function AboutPage() {
               Về Chúng Tôi
             </h1>
             <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
-              Tài Lộc Phát Showroom chuyên cung cấp sỉ và lẻ các thiết bị vệ sinh, gạch ốp lát, bồn chứa nước, và máy năng lượng mặt trời. Sứ mệnh của chúng tôi là mang đến những sản phẩm chất lượng cao với dịch vụ tận tâm, góp phần xây dựng nên những công trình bền vững và hiện đại.
+              Tài Lộc Phát Showroom chuyên cung cấp sỉ và l��� các thiết bị vệ sinh, gạch ốp lát, bồn chứa nước, và máy năng lượng mặt trời. Sứ mệnh của chúng tôi là mang đến những sản phẩm chất lượng cao với dịch vụ tận tâm, góp phần xây dựng nên những công trình bền vững và hiện đại.
             </p>
           </section>
           {/* Core Values Section */}
@@ -50,7 +50,7 @@ export function AboutPage() {
               Giá Trị Cốt Lõi
             </h2>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-              {coreValues.map((value) => (
+              {coreValues?.map((value) => (
                 <Card key={value.title} className="text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
                   <CardHeader>
                     <div className="mx-auto bg-primary/10 p-4 rounded-full w-fit">
@@ -71,7 +71,7 @@ export function AboutPage() {
               <div className="p-10">
                 <h2 className="text-3xl font-bold font-display tracking-tight">Ghé Thăm Showroom Của Chúng Tôi</h2>
                 <p className="mt-4 text-muted-foreground">
-                  Trải nghiệm trực tiếp sản phẩm và nhận tư vấn chuyên nghiệp từ đội ngũ của chúng tôi.
+                  Trải nghiệm trực tiếp sản phẩm và nhận tư vấn chuyên nghiệp từ đội ng�� của chúng tôi.
                 </p>
                 <div className="mt-8 space-y-4">
                   <div className="flex items-start gap-4">

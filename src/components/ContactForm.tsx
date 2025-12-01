@@ -12,8 +12,8 @@ import { api } from '@/lib/api-client';
 import { logEvent } from '@/lib/analytics';
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Vui lòng nhập tên của bạn.' }),
-  phone: z.string().min(10, { message: 'Số điện thoại không hợp lệ.' }).optional().or(z.literal('')),
-  message: z.string().min(10, { message: 'Nội dung cần ít nhất 10 ký tự.' }),
+  phone: z.string().regex(/^(|\+?84[3-9]\d{8}|0[3-9]\d{8})$/, 'Số điện thoại không hợp lệ.').optional(),
+  message: z.string().min(10, { message: 'Nội dung cần ít nhất 10 ký t��.' }),
 });
 export function ContactForm() {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -46,7 +46,7 @@ export function ContactForm() {
         existingInquiries.push(inquiryData);
         localStorage.setItem('tlp_inquiries_demo', JSON.stringify(existingInquiries));
         toast.success('Yêu cầu của bạn đã được lưu lại!', {
-          description: 'Chúng tôi sẽ xử lý ngay khi có kết nối. Cảm ơn bạn!',
+          description: 'Chúng tôi sẽ xử lý ngay khi có kết n���i. Cảm ơn bạn!',
         });
         handleSuccess();
       } catch (storageError) {
@@ -63,7 +63,7 @@ export function ContactForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Họ và Tên</FormLabel>
+              <FormLabel>H��� và Tên</FormLabel>
               <FormControl>
                 <Input placeholder="Nguyễn Văn A" {...field} />
               </FormControl>
@@ -76,7 +76,7 @@ export function ContactForm() {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Số Điện Thoại (Tùy chọn)</FormLabel>
+              <FormLabel>Số Điện Thoại (Tùy ch��n)</FormLabel>
               <FormControl>
                 <Input placeholder="09xxxxxxxx" {...field} />
               </FormControl>
