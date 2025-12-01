@@ -1,5 +1,5 @@
 # Tài Lộc Phát Showroom
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/Kevinau38/TaiLocPhatProject)
 A modern, responsive website for the construction materials business "Tài Lộc Phát Showroom" in Ho Chi Minh City. The site is built in Vietnamese, showcasing product categories, gallery, contact information, and a polished user experience with warm orange branding, mobile-first design, and fast interactions.
 ## Overview
 Tài Lộc Phát Showroom specializes in wholesale and retail of sanitary equipment, ceramic tiles, water tanks, and solar energy machines. The website features:
