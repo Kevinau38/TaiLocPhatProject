@@ -45,9 +45,9 @@ export function useSEO(title: string, description: string, path: string) {
     const ogUrl = setOgTag('og:url', `${window.location.origin}${path}`);
     const ogType = setOgTag('og:type', 'website');
     // Add JSON-LD script
-    let script = document.getElementById('json-ld-business');
+    let script = document.getElementById('json-ld-business') as HTMLScriptElement | null;
     if (!script) {
-      script = document.createElement('script');
+      script = document.createElement('script') as HTMLScriptElement;
       script.id = 'json-ld-business';
       script.type = 'application/ld+json';
       document.head.appendChild(script);

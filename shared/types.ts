@@ -23,6 +23,24 @@ export interface Inquiry {
   timestamp: number;
   page?: string;
 }
+
+export interface User {
+  id: string;
+  name: string;
+}
+
+export interface Chat {
+  id: string;
+  title: string;
+}
+
+export interface ChatMessage {
+  id: string;
+  chatId: string;
+  userId: string;
+  text: string;
+  ts: number;
+}
 // Types for Durable Object entities
 export interface ProductState {
   id: string;
