@@ -1,25 +1,53 @@
 import '@/lib/errorReporter';
 import { enableMapSet } from "immer";
 enableMapSet();
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { createBrowserRouter, RouterProvider, ScrollRestoration } from "react-router-dom";
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { RouteErrorBoundary } from '@/components/RouteErrorBoundary';
-import '@/index.css'
-import { HomePage } from '@/pages/HomePage'
-
+import '@/index.css';
+import { AppLayout } from '@/components/layout/AppLayout';
+import { HomePage } from '@/pages/HomePage';
+import { AboutPage } from '@/pages/AboutPage';
+import { ProductsPage } from '@/pages/ProductsPage';
+import { GalleryPage } from '@/pages/GalleryPage';
+import { ContactPage } from '@/pages/ContactPage';
+const createPage = (Page: React.ComponentType) => (
+  <>
+    <AppLayout>
+      <Page />
+    </AppLayout>
+    <ScrollRestoration />
+  </>
+);
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
+    element: createPage(HomePage),
+    errorElement: <RouteErrorBoundary />,
+  },
+  {
+    path: "/about",
+    element: createPage(AboutPage),
+    errorElement: <RouteErrorBoundary />,
+  },
+  {
+    path: "/products",
+    element: createPage(ProductsPage),
+    errorElement: <RouteErrorBoundary />,
+  },
+  {
+    path: "/gallery",
+    element: createPage(GalleryPage),
+    errorElement: <RouteErrorBoundary />,
+  },
+  {
+    path: "/contact",
+    element: createPage(ContactPage),
     errorElement: <RouteErrorBoundary />,
   },
 ]);
-
 // Do not touch this code
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -27,5 +55,4 @@ createRoot(document.getElementById('root')!).render(
       <RouterProvider router={router} />
     </ErrorBoundary>
   </StrictMode>,
-)
-   
+);

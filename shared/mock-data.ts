@@ -1,15 +1,73 @@
-import type { User, Chat, ChatMessage } from './types';
-
-export const MOCK_USERS: User[] = [
-  { id: 'u1', name: 'User A' },
-  { id: 'u2', name: 'User B' }
+import type { Product, GalleryImage } from './types';
+export const MOCK_PRODUCTS: Product[] = [
+  {
+    id: 'p1',
+    name: 'Bồn Cầu Thông Minh INAX',
+    description: 'Bồn cầu thông minh cao cấp với nhiều chức năng tự động, mang lại sự thoải mái và vệ sinh tối đa.',
+    category: 'Thiết bị vệ sinh',
+    imageUrl: 'https://images.unsplash.com/photo-1604728942313-4d2a475178e1?q=80&w=1974&auto=format&fit=crop',
+  },
+  {
+    id: 'p2',
+    name: 'Gạch Vân Đá Marble Cao Cấp',
+    description: 'Gạch ốp lát vân đá marble tự nhiên, kích thước 60x120cm, phù hợp cho không gian sang trọng.',
+    category: 'Gạch ốp lát',
+    imageUrl: 'https://images.unsplash.com/photo-1599819122191-125c145c222a?q=80&w=1964&auto=format&fit=crop',
+  },
+  {
+    id: 'p3',
+    name: 'Bồn Nước Inox Sơn Hà 2000L',
+    description: 'Bồn chứa nước inox SUS 304 siêu bền, dung tích lớn 2000 lít, đảm bảo an toàn vệ sinh nguồn nước.',
+    category: 'Bồn chứa nước',
+    imageUrl: 'https://images.unsplash.com/photo-1621495044305-a2f256d2f74b?q=80&w=2070&auto=format&fit=crop',
+  },
+  {
+    id: 'p4',
+    name: 'Máy Nước Nóng Năng Lượng Mặt Trời',
+    description: 'Giải pháp tiết kiệm điện hiệu quả với máy nước nóng sử dụng năng lượng mặt trời, dung tích 180L.',
+    category: 'Máy năng lượng mặt trời',
+    imageUrl: 'https://images.unsplash.com/photo-1542029031753-83095a55485a?q=80&w=2070&auto=format&fit=crop',
+  },
+  {
+    id: 'p5',
+    name: 'Vòi Sen Tắm Đứng Nóng Lạnh',
+    description: 'Bộ vòi sen tắm đứng mạ chrome cao cấp, thiết kế hiện đại, điều chỉnh nhiệt độ dễ dàng.',
+    category: 'Thiết bị vệ sinh',
+    imageUrl: 'https://images.unsplash.com/photo-1616434328584-712a4c5a7b8b?q=80&w=1974&auto=format&fit=crop',
+  },
+  {
+    id: 'p6',
+    name: 'Gạch Thẻ Trang Trí Cổ Điển',
+    description: 'Gạch thẻ ốp tường mang phong cách cổ điển, tạo điểm nhấn độc đáo cho không gian nội thất.',
+    category: 'Gạch ốp lát',
+    imageUrl: 'https://images.unsplash.com/photo-1550053808-52a75a05955d?q=80&w=2070&auto=format&fit=crop',
+  },
+  {
+    id: 'p7',
+    name: 'Bồn Nhựa Thế Hệ Mới Đại Thành',
+    description: 'Bồn nhựa cao cấp, chống tia UV, an toàn cho sức khỏe, dung tích 1500L.',
+    category: 'Bồn chứa nước',
+    imageUrl: 'https://images.unsplash.com/photo-1596591603951-c8213a841259?q=80&w=2070&auto=format&fit=crop',
+  },
+  {
+    id: 'p8',
+    name: 'Tấm Pin Năng Lượng Mặt Trời Mono',
+    description: 'Tấm pin mono hiệu suất cao, công suất 450W, bền bỉ với thời gian, bảo hành 12 năm.',
+    category: 'Máy năng lượng mặt trời',
+    imageUrl: 'https://images.unsplash.com/photo-1508554857335-56b55362affd?q=80&w=2070&auto=format&fit=crop',
+  },
 ];
-
-export const MOCK_CHATS: Chat[] = [
-  { id: 'c1', title: 'General' },
+export const MOCK_GALLERY: GalleryImage[] = [
+  { id: 'g1', imageUrl: 'https://images.unsplash.com/photo-1586798271654-011518909713?q=80&w=1974&auto=format&fit=crop', alt: 'Showroom gạch ốp lát' },
+  { id: 'g2', imageUrl: 'https://images.unsplash.com/photo-1617103996280-ab50b6c6f444?q=80&w=1964&auto=format&fit=crop', alt: 'Phòng tắm hiện đại' },
+  { id: 'g3', imageUrl: 'https://images.unsplash.com/photo-1595432339340-80145fbf835c?q=80&w=1964&auto=format&fit=crop', alt: 'Thiết bị vệ sinh cao cấp' },
+  { id: 'g4', imageUrl: 'https://images.unsplash.com/photo-1588854337236-6889d631f389?q=80&w=2070&auto=format&fit=crop', alt: 'Không gian trưng bày' },
+  { id: 'g5', imageUrl: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop', alt: 'Dự án nhà ở' },
+  { id: 'g6', imageUrl: 'https://images.unsplash.com/photo-1600585154340-be6164a83639?q=80&w=2070&auto=format&fit=crop', alt: 'Nội thất phòng tắm' },
+  { id: 'g7', imageUrl: 'https://images.unsplash.com/photo-1576487248795-e64f0cde5237?q=80&w=1974&auto=format&fit=crop', alt: 'Gạch trang trí' },
+  { id: 'g8', imageUrl: 'https://images.unsplash.com/photo-1593185369643-3d71a35345e2?q=80&w=2070&auto=format&fit=crop', alt: 'Hệ thống năng lượng mặt trời' },
+  { id: 'g9', imageUrl: 'https://images.unsplash.com/photo-1598440334254-fedc1a7c73b3?q=80&w=1974&auto=format&fit=crop', alt: 'Chi tiết sản phẩm' },
+  { id: 'g10', imageUrl: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2070&auto=format&fit=crop', alt: 'Phòng khách sang trọng' },
+  { id: 'g11', imageUrl: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop', alt: 'Thiết kế tối giản' },
+  { id: 'g12', imageUrl: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2070&auto=format&fit=crop', alt: 'Không gian sống' },
 ];
-
-export const MOCK_CHAT_MESSAGES: ChatMessage[] = [
-  { id: 'm1', chatId: 'c1', userId: 'u1', text: 'Hello', ts: Date.now() },
-];
-  

@@ -8,12 +8,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
 import { Inquiry } from '@shared/types';
-import { api } from '@/lib/api-client';
-import { logEvent } from '@/lib/analytics';
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Vui lòng nhập tên của bạn.' }),
-  phone: z.string().regex(/^(|\+?84[3-9]\d{8}|0[3-9]\d{8})$/, 'Số điện thoại không hợp lệ.').optional(),
-  message: z.string().min(10, { message: 'Nội dung cần ít nhất 10 ký t��.' }),
+  phone: z.string().optional(),
+  message: z.string().min(10, { message: 'N���i dung cần ít nhất 10 ký tự.' }),
 });
 export function ContactForm() {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -25,30 +23,30 @@ export function ContactForm() {
     },
   });
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const inquiryData: Inquiry = { ...values, timestamp: Date.now(), page: 'contact' };
-    const handleSuccess = () => {
-      logEvent('form_submit', { form: 'contact', name: values.name });
-      form.reset();
-    };
+    const inquiry: Inquiry = { ...values, timestamp: Date.now(), page: 'contact' };
     try {
-      await api<Inquiry>('/api/inquiries', {
+      const response = await fetch('/api/inquiries', {
         method: 'POST',
-        body: JSON.stringify(inquiryData),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(inquiry),
       });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
       toast.success('Gửi yêu cầu thành công!', {
         description: 'Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.',
       });
-      handleSuccess();
+      form.reset();
     } catch (error) {
-      console.warn('API call failed, falling back to localStorage', error);
+      console.error('API call failed, falling back to localStorage', error);
       try {
         const existingInquiries = JSON.parse(localStorage.getItem('tlp_inquiries_demo') || '[]');
-        existingInquiries.push(inquiryData);
+        existingInquiries.push(inquiry);
         localStorage.setItem('tlp_inquiries_demo', JSON.stringify(existingInquiries));
         toast.success('Yêu cầu của bạn đã được lưu lại!', {
-          description: 'Chúng tôi sẽ xử lý ngay khi có kết n���i. Cảm ơn bạn!',
+          description: 'Chúng tôi sẽ xử lý ngay khi có kết nối. Cảm ơn bạn!',
         });
-        handleSuccess();
+        form.reset();
       } catch (storageError) {
         console.error('Failed to save to localStorage', storageError);
         toast.error('Đã có lỗi xảy ra. Vui lòng thử lại sau.');
@@ -63,7 +61,7 @@ export function ContactForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>H��� và Tên</FormLabel>
+              <FormLabel>Họ và Tên</FormLabel>
               <FormControl>
                 <Input placeholder="Nguyễn Văn A" {...field} />
               </FormControl>
@@ -76,7 +74,7 @@ export function ContactForm() {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Số Điện Thoại (Tùy ch��n)</FormLabel>
+              <FormLabel>Số Điện Thoại (T��y chọn)</FormLabel>
               <FormControl>
                 <Input placeholder="09xxxxxxxx" {...field} />
               </FormControl>

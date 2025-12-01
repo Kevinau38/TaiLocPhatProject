@@ -1,18 +1,7 @@
-import { useEffect } from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { ContactForm } from '@/components/ContactForm';
-import { useSEO } from '@/hooks/useSEO';
-import { trackPageView } from '@/lib/analytics';
 export function ContactPage() {
-  useSEO(
-    'Liên Hệ - Tài Lộc Phát Showroom',
-    'Liên hệ với chúng tôi qua hotline, email hoặc ghé thăm showroom tại 624 Hà Huy Giáp, TP. HCM để được tư vấn.',
-    '/contact'
-  );
-  useEffect(() => {
-    trackPageView('/contact');
-  }, []);
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="py-16 md:py-24">
@@ -21,7 +10,7 @@ export function ContactPage() {
             Liên Hệ Với Chúng Tôi
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Chúng tôi luôn sẵn sàng lắng nghe và tư vấn. Hãy kết nối với chúng tôi!
+            Chúng tôi luôn sẵn sàng l��ng nghe và tư vấn. Hãy kết nối với chúng tôi!
           </p>
         </div>
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -32,7 +21,7 @@ export function ContactPage() {
                   <MapPin className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold">Đ���a chỉ Showroom</h3>
+                  <h3 className="text-lg font-semibold">��ịa chỉ Showroom</h3>
                   <p className="text-muted-foreground">624 Đường Hà Huy Giáp, Phường An Phú Đông, TP. Hồ Chí Minh</p>
                 </div>
               </CardContent>
@@ -64,7 +53,7 @@ export function ContactPage() {
               </CardContent>
             </Card>
             <div className="aspect-video rounded-lg overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1575449340399-0814a6db3952?q=80&w=2070&auto=format&fit=crop" alt="Map placeholder" className="w-full h-full object-cover" loading="lazy" />
+                <img src="https://images.unsplash.com/photo-1575449340399-0814a6db3952?q=80&w=2070&auto=format&fit=crop" alt="Map placeholder" className="w-full h-full object-cover" />
             </div>
           </div>
           <div className="animate-slide-up animation-delay-200">
