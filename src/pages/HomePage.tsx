@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { HeroBanner } from '@/components/HeroBanner';
 import { ProductCard } from '@/components/ProductCard';
 import { MOCK_PRODUCTS } from '@shared/mock-data';
@@ -7,7 +8,17 @@ import { Link } from 'react-router-dom';
 import { ShieldCheck, Star, Truck, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Product } from '@shared/types';
+import { useSEO } from '@/hooks/useSEO';
+import { trackPageView } from '@/lib/analytics';
 export function HomePage() {
+  useSEO(
+    'Tài Lộc Phát Showroom - Tin cậy, Chất lượng, Giao nhanh',
+    'Chuyên cung cấp thiết bị vệ sinh, gạch ốp lát, bồn chứa nước, và máy năng lượng mặt trời cao cấp tại TP. HCM.',
+    '/'
+  );
+  useEffect(() => {
+    trackPageView('/');
+  }, []);
   // Get one product from each category for highlighting
   const highlightedProducts = MOCK_PRODUCTS.reduce((acc, product) => {
     if (!acc.some(p => p.category === product.category)) {
@@ -91,7 +102,7 @@ export function HomePage() {
                 transition={{ duration: 0.6 }}
               >
                 <h2 className="text-3xl md:text-4xl font-bold font-display tracking-tight">
-                  Sẵn Sàng Nâng Tầm Không Gian Sống Của Bạn?
+                  Sẵn Sàng Nâng T��m Không Gian Sống Của Bạn?
                 </h2>
                 <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
                   Chúng tôi trân trọng mời Quý khách đến thăm showroom để trải nghiệm sản phẩm và nhận tư vấn tốt nhất.

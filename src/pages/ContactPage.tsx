@@ -1,7 +1,18 @@
+import { useEffect } from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { ContactForm } from '@/components/ContactForm';
+import { useSEO } from '@/hooks/useSEO';
+import { trackPageView } from '@/lib/analytics';
 export function ContactPage() {
+  useSEO(
+    'Liên Hệ - Tài Lộc Phát Showroom',
+    'Liên hệ với chúng tôi qua hotline, email hoặc ghé thăm showroom tại 624 Hà Huy Giáp, TP. HCM để được tư vấn.',
+    '/contact'
+  );
+  useEffect(() => {
+    trackPageView('/contact');
+  }, []);
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="py-16 md:py-24">
@@ -10,7 +21,7 @@ export function ContactPage() {
             Liên Hệ Với Chúng Tôi
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Chúng tôi luôn sẵn sàng l��ng nghe và tư vấn. Hãy kết nối với chúng tôi!
+            Chúng tôi luôn sẵn sàng lắng nghe và tư vấn. Hãy kết n���i với chúng tôi!
           </p>
         </div>
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -21,8 +32,8 @@ export function ContactPage() {
                   <MapPin className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold">��ịa chỉ Showroom</h3>
-                  <p className="text-muted-foreground">624 Đường Hà Huy Giáp, Phường An Phú Đông, TP. Hồ Chí Minh</p>
+                  <h3 className="text-lg font-semibold">Địa chỉ Showroom</h3>
+                  <p className="text-muted-foreground">624 Đường Hà Huy Giáp, Phường An Phú Đông, TP. H�� Chí Minh</p>
                 </div>
               </CardContent>
             </Card>
@@ -58,7 +69,7 @@ export function ContactPage() {
           </div>
           <div className="animate-slide-up animation-delay-200">
             <Card className="p-6 sm:p-8">
-              <h2 className="text-2xl font-bold font-display">Gửi Yêu Cầu Tư Vấn</h2>
+              <h2 className="text-2xl font-bold font-display">Gửi Y��u Cầu Tư Vấn</h2>
               <p className="mt-2 text-muted-foreground">Điền thông tin vào form dưới đây, chúng tôi sẽ liên hệ lại với bạn sớm nhất.</p>
               <div className="mt-6">
                 <ContactForm />

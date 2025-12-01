@@ -9,10 +9,11 @@ import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
 import { Inquiry } from '@shared/types';
 import { api } from '@/lib/api-client';
+import { logEvent } from '@/lib/analytics';
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Vui lòng nhập tên của bạn.' }),
   phone: z.string().min(10, { message: 'Số điện thoại không hợp lệ.' }).optional().or(z.literal('')),
-  message: z.string().min(10, { message: 'Nội dung cần ít nhất 10 k�� tự.' }),
+  message: z.string().min(10, { message: 'Nội dung cần ít nhất 10 ký tự.' }),
 });
 export function ContactForm() {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -25,15 +26,19 @@ export function ContactForm() {
   });
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const inquiryData: Inquiry = { ...values, timestamp: Date.now(), page: 'contact' };
+    const handleSuccess = () => {
+      logEvent('form_submit', { form: 'contact', name: values.name });
+      form.reset();
+    };
     try {
       await api<Inquiry>('/api/inquiries', {
         method: 'POST',
         body: JSON.stringify(inquiryData),
       });
-      toast.success('G��i yêu cầu thành công!', {
-        description: 'Chúng tôi sẽ liên hệ v��i bạn sớm nhất có thể.',
+      toast.success('Gửi yêu cầu thành công!', {
+        description: 'Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.',
       });
-      form.reset();
+      handleSuccess();
     } catch (error) {
       console.warn('API call failed, falling back to localStorage', error);
       try {
@@ -41,12 +46,12 @@ export function ContactForm() {
         existingInquiries.push(inquiryData);
         localStorage.setItem('tlp_inquiries_demo', JSON.stringify(existingInquiries));
         toast.success('Yêu cầu của bạn đã được lưu lại!', {
-          description: 'Chúng tôi sẽ xử l�� ngay khi có kết nối. Cảm ơn bạn!',
+          description: 'Chúng tôi sẽ xử lý ngay khi có kết nối. Cảm ơn bạn!',
         });
-        form.reset();
+        handleSuccess();
       } catch (storageError) {
         console.error('Failed to save to localStorage', storageError);
-        toast.error('Đã có lỗi x���y ra. Vui lòng thử lại sau.');
+        toast.error('Đã có lỗi xảy ra. Vui lòng thử lại sau.');
       }
     }
   };

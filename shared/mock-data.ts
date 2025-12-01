@@ -2,7 +2,7 @@ import type { ProductState, GalleryImage } from './types';
 export const MOCK_PRODUCTS: ProductState[] = [
   {
     id: 'p1',
-    name: 'Bồn Cầu Thông Minh INAX',
+    name: 'B���n Cầu Thông Minh INAX',
     description: 'Bồn cầu thông minh cao cấp với nhiều chức năng tự động, mang lại sự thoải mái và vệ sinh tối đa.',
     category: 'Thiết bị vệ sinh',
     imageUrl: 'https://images.unsplash.com/photo-1604728942313-4d2a475178e1?q=80&w=1974&auto=format&fit=crop',
@@ -19,7 +19,7 @@ export const MOCK_PRODUCTS: ProductState[] = [
   {
     id: 'p3',
     name: 'Bồn Nước Inox Sơn Hà 2000L',
-    description: 'Bồn chứa nước inox SUS 304 siêu bền, dung tích lớn 2000 lít, đảm b���o an toàn vệ sinh nguồn nước.',
+    description: 'Bồn chứa nước inox SUS 304 siêu bền, dung tích lớn 2000 lít, đảm bảo an toàn vệ sinh nguồn nước.',
     category: 'Bồn chứa nước',
     imageUrl: 'https://images.unsplash.com/photo-1621495044305-a2f256d2f74b?q=80&w=2070&auto=format&fit=crop',
     createdAt: Date.now(),
@@ -35,14 +35,14 @@ export const MOCK_PRODUCTS: ProductState[] = [
   {
     id: 'p5',
     name: 'Vòi Sen Tắm Đứng Nóng Lạnh',
-    description: 'Bộ vòi sen tắm đứng mạ chrome cao cấp, thiết kế hiện đại, điều chỉnh nhiệt độ dễ dàng.',
+    description: 'Bộ vòi sen tắm đứng mạ chrome cao cấp, thiết kế hiện đại, đi��u chỉnh nhiệt độ dễ dàng.',
     category: 'Thiết bị vệ sinh',
     imageUrl: 'https://images.unsplash.com/photo-1616434328584-712a4c5a7b8b?q=80&w=1974&auto=format&fit=crop',
     createdAt: Date.now(),
   },
   {
     id: 'p6',
-    name: 'Gạch Thẻ Trang Trí Cổ Điển',
+    name: 'Gạch Thẻ Trang Tr�� Cổ Điển',
     description: 'Gạch thẻ ốp tường mang phong cách cổ điển, tạo điểm nhấn độc đáo cho không gian nội thất.',
     category: 'Gạch ốp lát',
     imageUrl: 'https://images.unsplash.com/photo-1550053808-52a75a05955d?q=80&w=2070&auto=format&fit=crop',

@@ -4,12 +4,23 @@ import { GalleryGrid } from '@/components/GalleryGrid';
 import { MOCK_GALLERY } from '@shared/mock-data';
 import { X, ArrowLeft, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useSEO } from '@/hooks/useSEO';
+import { trackPageView, logEvent } from '@/lib/analytics';
 export function GalleryPage() {
+  useSEO(
+    'Thư Viện Hình Ảnh - Tài Lộc Phát Showroom',
+    'Xem hình ảnh thực tế t��� showroom và các dự án đã hoàn thành của chúng tôi.',
+    '/gallery'
+  );
+  useEffect(() => {
+    trackPageView('/gallery');
+  }, []);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const openLightbox = (imageUrl: string, index: number) => {
     setCurrentIndex(index);
     setLightboxOpen(true);
+    logEvent('lightbox_open', { imageUrl, index });
   };
   const nextImage = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % MOCK_GALLERY.length);

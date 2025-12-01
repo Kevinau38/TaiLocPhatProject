@@ -9,7 +9,7 @@ export class ProductEntity extends IndexedEntity<ProductState> {
     id: "",
     name: "",
     description: "",
-    category: "",
+    category: "Thiết bị vệ sinh",
     imageUrl: "",
     createdAt: 0,
   };

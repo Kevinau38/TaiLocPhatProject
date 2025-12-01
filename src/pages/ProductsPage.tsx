@@ -9,6 +9,8 @@ import { api } from '@/lib/api-client';
 import { Product } from '@shared/types';
 import { toast } from 'sonner';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useSEO } from '@/hooks/useSEO';
+import { trackPageView, logEvent } from '@/lib/analytics';
 const categories = [
   { name: 'Tất cả', value: 'all', icon: <LayoutGrid className="h-5 w-5" /> },
   { name: 'Thiết bị vệ sinh', value: 'Thiết bị vệ sinh', icon: <Bath className="h-5 w-5" /> },
@@ -18,11 +20,17 @@ const categories = [
 ];
 type SortByType = 'newest' | 'name-asc' | 'name-desc';
 export function ProductsPage() {
+  useSEO(
+    'Sản Phẩm - Tài Lộc Phát Showroom',
+    'Khám phá bộ sưu tập thiết bị vệ sinh, gạch ốp lát, bồn chứa nước và máy năng lượng mặt trời chất lượng cao.',
+    '/products'
+  );
   const [activeCategory, setActiveCategory] = useState('all');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState<SortByType>('newest');
   useEffect(() => {
+    trackPageView('/products');
     const fetchProducts = async () => {
       setLoading(true);
       try {
@@ -31,13 +39,21 @@ export function ProductsPage() {
       } catch (error) {
         console.warn('API call for products failed, falling back to mock data.', error);
         setProducts(MOCK_PRODUCTS as Product[]);
-        toast.error('Không thể tải sản phẩm. Hiển thị dữ liệu mẫu.');
+        toast.info('Không thể tải sản phẩm. Hiển thị dữ liệu mẫu.');
       } finally {
         setLoading(false);
       }
     };
     fetchProducts();
   }, []);
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category);
+    logEvent('filter_category', { category });
+  };
+  const handleSortChange = (sortValue: SortByType) => {
+    setSortBy(sortValue);
+    logEvent('sort_products', { sortBy: sortValue });
+  };
   const filteredAndSortedProducts = useMemo(() => {
     let filtered = activeCategory === 'all'
       ? [...products]
@@ -74,7 +90,7 @@ export function ProductsPage() {
               <Button
                 key={category.value}
                 variant={activeCategory === category.value ? 'default' : 'outline'}
-                onClick={() => setActiveCategory(category.value)}
+                onClick={() => handleCategoryChange(category.value)}
                 className={cn(
                   "flex items-center gap-2 transition-all duration-200",
                   activeCategory === category.value && "bg-primary text-primary-foreground"
@@ -86,12 +102,12 @@ export function ProductsPage() {
             ))}
           </div>
           <div className="flex justify-center">
-            <Select onValueChange={(value: SortByType) => setSortBy(value)} defaultValue={sortBy}>
+            <Select onValueChange={handleSortChange} defaultValue={sortBy}>
               <SelectTrigger className="w-[200px]">
                 <SelectValue placeholder="Sắp xếp theo" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="newest">Mới nhất</SelectItem>
+                <SelectItem value="newest">M��i nhất</SelectItem>
                 <SelectItem value="name-asc">Tên: A-Z</SelectItem>
                 <SelectItem value="name-desc">Tên: Z-A</SelectItem>
               </SelectContent>

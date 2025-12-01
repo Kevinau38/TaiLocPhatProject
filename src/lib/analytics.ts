@@ -1,6 +1,4 @@
 const ANALYTICS_KEY = 'tlp_analytics';
-const MAX_EVENTS = 1000;
-const TRIM_AMOUNT = 500;
 interface AnalyticsEvent {
   type: string;
   timestamp: number;
@@ -9,11 +7,7 @@ interface AnalyticsEvent {
 }
 export function logEvent(type: string, data: unknown = {}) {
   try {
-    let existingEvents: AnalyticsEvent[] = JSON.parse(localStorage.getItem(ANALYTICS_KEY) || '[]');
-    // Storage quota check
-    if (existingEvents.length >= MAX_EVENTS) {
-      existingEvents = existingEvents.slice(TRIM_AMOUNT);
-    }
+    const existingEvents: AnalyticsEvent[] = JSON.parse(localStorage.getItem(ANALYTICS_KEY) || '[]');
     const newEvent: AnalyticsEvent = {
       type,
       timestamp: Date.now(),

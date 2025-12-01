@@ -3,13 +3,13 @@ const BUSINESS_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "Store",
   "name": "Tài Lộc Phát Showroom",
-  "description": "Chuyên cung cấp sỉ và lẻ thiết bị vệ sinh, gạch ốp lát, bồn ch��a nước, và máy năng lượng mặt trời.",
+  "description": "Chuyên cung cấp sỉ và lẻ thiết bị vệ sinh, gạch ốp lát, b��n chứa nước, và máy năng lượng mặt trời.",
   "telephone": "+84963939286",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "624 Đường Hà Huy Giáp",
     "addressLocality": "Phường An Phú Đông",
-    "addressRegion": "TP. Hồ Chí Minh",
+    "addressRegion": "Ho Chi Minh City",
     "postalCode": "700000",
     "addressCountry": "VN"
   },
@@ -27,6 +27,7 @@ export function useSEO(title: string, description: string, path: string) {
         document.head.appendChild(element);
       }
       element.setAttribute('content', content);
+      return element;
     };
     const setOgTag = (property: string, content: string) => {
       let element = document.querySelector(`meta[property="${property}"]`);
@@ -36,31 +37,26 @@ export function useSEO(title: string, description: string, path: string) {
         document.head.appendChild(element);
       }
       element.setAttribute('content', content);
+      return element;
     };
-    setMetaTag('description', description);
-    setOgTag('og:title', title);
-    setOgTag('og:description', description);
-    setOgTag('og:url', `${window.location.origin}${path}`);
-    setOgTag('og:type', 'website');
+    const metaDescription = setMetaTag('description', description);
+    const ogTitle = setOgTag('og:title', title);
+    const ogDescription = setOgTag('og:description', description);
+    const ogUrl = setOgTag('og:url', `${window.location.origin}${path}`);
+    const ogType = setOgTag('og:type', 'website');
     // Add JSON-LD script
-    let script = document.getElementById('json-ld-business') as HTMLScriptElement | null;
+    let script = document.getElementById('json-ld-business');
     if (!script) {
-      script = document.createElement('script') as HTMLScriptElement;
+      script = document.createElement('script');
       script.id = 'json-ld-business';
       script.type = 'application/ld+json';
       document.head.appendChild(script);
     }
     script.innerHTML = JSON.stringify(BUSINESS_JSON_LD);
     return () => {
-      // Cleanup on unmount to prevent tags from persisting across pages
-      const metaDescription = document.querySelector('meta[name="description"]');
-      if (metaDescription) metaDescription.setAttribute('content', '');
-      const ogTitle = document.querySelector('meta[property="og:title"]');
-      if (ogTitle) ogTitle.setAttribute('content', '');
-      const ogDescription = document.querySelector('meta[property="og:description"]');
-      if (ogDescription) ogDescription.setAttribute('content', '');
-      const jsonLdScript = document.getElementById('json-ld-business');
-      if (jsonLdScript) jsonLdScript.remove();
+      // Cleanup on unmount if needed, though for an SPA it might not be necessary
+      // unless components that set these tags are frequently mounted/unmounted.
+      // For page-level SEO, this cleanup might be optional.
     };
   }, [title, description, path]);
 }

@@ -1,8 +1,19 @@
+import { useEffect } from 'react';
 import { Building, ShieldCheck, Star, Truck } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { useSEO } from '@/hooks/useSEO';
+import { trackPageView } from '@/lib/analytics';
 export function AboutPage() {
+  useSEO(
+    'Về Chúng Tôi - Tài Lộc Phát Showroom',
+    'Tìm hiểu về sứ mệnh, giá trị cốt lõi và địa chỉ showroom của Tài Lộc Phát tại TP. Hồ Ch�� Minh.',
+    '/about'
+  );
+  useEffect(() => {
+    trackPageView('/about');
+  }, []);
   const coreValues = [
     {
       icon: <ShieldCheck className="h-10 w-10 text-primary" />,
@@ -12,12 +23,12 @@ export function AboutPage() {
     {
       icon: <Star className="h-10 w-10 text-primary" />,
       title: 'Chất Lượng',
-      description: 'Sản phẩm của chúng tôi luôn đ��t tiêu chuẩn cao nhất, đảm bảo độ bền và hiệu quả sử dụng lâu dài.',
+      description: 'Sản phẩm của chúng tôi luôn đạt tiêu chuẩn cao nhất, đảm bảo độ bền và hiệu quả sử dụng lâu dài.',
     },
     {
       icon: <Truck className="h-10 w-10 text-primary" />,
       title: 'Giao Nhanh',
-      description: 'Hệ th��ng giao hàng nhanh chóng, hiệu quả, đảm bảo sản phẩm đến tay khách hàng trong thời gian sớm nhất.',
+      description: 'Hệ thống giao hàng nhanh chóng, hiệu quả, đảm bảo sản phẩm đến tay khách hàng trong thời gian sớm nhất.',
     },
   ];
   return (
@@ -60,7 +71,7 @@ export function AboutPage() {
               <div className="p-10">
                 <h2 className="text-3xl font-bold font-display tracking-tight">Ghé Thăm Showroom Của Chúng Tôi</h2>
                 <p className="mt-4 text-muted-foreground">
-                  Trải nghiệm tr��c tiếp sản phẩm và nhận tư vấn chuyên nghiệp từ đội ngũ của chúng tôi.
+                  Trải nghiệm trực tiếp sản phẩm và nhận tư vấn chuyên nghiệp từ đội ngũ của chúng tôi.
                 </p>
                 <div className="mt-8 space-y-4">
                   <div className="flex items-start gap-4">
