@@ -28,7 +28,7 @@ export function Footer() {
             <div className="mt-4 space-y-4 text-sm">
               <div className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-muted-foreground">624 Đư��ng Hà Huy Giáp, Phường An Phú Đông, TP. Hồ Chí Minh</span>
+                <span className="text-muted-foreground">624 Đường Hà Huy Gi��p, Phường An Phú Đông, TP. Hồ Chí Minh</span>
               </div>
               <div className="flex items-start gap-3">
                 <Phone className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
@@ -39,7 +39,6 @@ export function Footer() {
         </div>
         <div className="mt-12 border-t pt-8 text-center text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Tài Lộc Phát Showroom. All rights reserved.</p>
-          <p className="mt-1">Built with ❤��� at Cloudflare</p>
         </div>
       </div>
     </footer>
