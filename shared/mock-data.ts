@@ -1,11 +1,12 @@
-import type { Product, GalleryImage } from './types';
-export const MOCK_PRODUCTS: Product[] = [
+import type { ProductState, GalleryImage } from './types';
+export const MOCK_PRODUCTS: ProductState[] = [
   {
     id: 'p1',
     name: 'Bồn Cầu Thông Minh INAX',
     description: 'Bồn cầu thông minh cao cấp với nhiều chức năng tự động, mang lại sự thoải mái và vệ sinh tối đa.',
     category: 'Thiết bị vệ sinh',
     imageUrl: 'https://images.unsplash.com/photo-1604728942313-4d2a475178e1?q=80&w=1974&auto=format&fit=crop',
+    createdAt: Date.now(),
   },
   {
     id: 'p2',
@@ -13,13 +14,15 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Gạch ốp lát vân đá marble tự nhiên, kích thước 60x120cm, phù hợp cho không gian sang trọng.',
     category: 'Gạch ốp lát',
     imageUrl: 'https://images.unsplash.com/photo-1599819122191-125c145c222a?q=80&w=1964&auto=format&fit=crop',
+    createdAt: Date.now(),
   },
   {
     id: 'p3',
     name: 'Bồn Nước Inox Sơn Hà 2000L',
-    description: 'Bồn chứa nước inox SUS 304 siêu bền, dung tích lớn 2000 lít, đảm bảo an toàn vệ sinh nguồn nước.',
+    description: 'Bồn chứa nước inox SUS 304 siêu bền, dung tích lớn 2000 lít, đảm b���o an toàn vệ sinh nguồn nước.',
     category: 'Bồn chứa nước',
     imageUrl: 'https://images.unsplash.com/photo-1621495044305-a2f256d2f74b?q=80&w=2070&auto=format&fit=crop',
+    createdAt: Date.now(),
   },
   {
     id: 'p4',
@@ -27,6 +30,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Giải pháp tiết kiệm điện hiệu quả với máy nước nóng sử dụng năng lượng mặt trời, dung tích 180L.',
     category: 'Máy năng lượng mặt trời',
     imageUrl: 'https://images.unsplash.com/photo-1542029031753-83095a55485a?q=80&w=2070&auto=format&fit=crop',
+    createdAt: Date.now(),
   },
   {
     id: 'p5',
@@ -34,6 +38,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Bộ vòi sen tắm đứng mạ chrome cao cấp, thiết kế hiện đại, điều chỉnh nhiệt độ dễ dàng.',
     category: 'Thiết bị vệ sinh',
     imageUrl: 'https://images.unsplash.com/photo-1616434328584-712a4c5a7b8b?q=80&w=1974&auto=format&fit=crop',
+    createdAt: Date.now(),
   },
   {
     id: 'p6',
@@ -41,6 +46,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Gạch thẻ ốp tường mang phong cách cổ điển, tạo điểm nhấn độc đáo cho không gian nội thất.',
     category: 'Gạch ốp lát',
     imageUrl: 'https://images.unsplash.com/photo-1550053808-52a75a05955d?q=80&w=2070&auto=format&fit=crop',
+    createdAt: Date.now(),
   },
   {
     id: 'p7',
@@ -48,6 +54,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Bồn nhựa cao cấp, chống tia UV, an toàn cho sức khỏe, dung tích 1500L.',
     category: 'Bồn chứa nước',
     imageUrl: 'https://images.unsplash.com/photo-1596591603951-c8213a841259?q=80&w=2070&auto=format&fit=crop',
+    createdAt: Date.now(),
   },
   {
     id: 'p8',
@@ -55,6 +62,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Tấm pin mono hiệu suất cao, công suất 450W, bền bỉ với thời gian, bảo hành 12 năm.',
     category: 'Máy năng lượng mặt trời',
     imageUrl: 'https://images.unsplash.com/photo-1508554857335-56b55362affd?q=80&w=2070&auto=format&fit=crop',
+    createdAt: Date.now(),
   },
 ];
 export const MOCK_GALLERY: GalleryImage[] = [

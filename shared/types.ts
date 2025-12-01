@@ -7,7 +7,7 @@ export interface Product {
   id: string;
   name: string;
   description: string;
-  category: 'Thiết bị vệ sinh' | 'G���ch ốp lát' | 'Bồn chứa nước' | 'Máy năng lượng mặt tr��i';
+  category: 'Thiết bị vệ sinh' | 'Gạch ốp lát' | 'Bồn chứa nước' | 'Máy năng lượng mặt trời';
   imageUrl: string;
 }
 export interface GalleryImage {
@@ -21,4 +21,22 @@ export interface Inquiry {
   message: string;
   timestamp: number;
   page?: string;
+}
+// Types for Durable Object entities
+export interface ProductState {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  imageUrl: string;
+  createdAt: number;
+}
+export interface InquiryState {
+  id: string;
+  name: string;
+  phone?: string;
+  message: string;
+  timestamp: number;
+  page?: string;
+  processed?: boolean;
 }

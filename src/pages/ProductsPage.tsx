@@ -1,12 +1,15 @@
-import React, { useState, useMemo } from 'react';
-import { Bath, BrickWall, Droplets, Sun } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Bath, BrickWall, Droplets, Sun, LayoutGrid } from 'lucide-react';
 import { ProductCard } from '@/components/ProductCard';
 import { MOCK_PRODUCTS } from '@shared/mock-data';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
+import { api } from '@/lib/api-client';
+import { Product } from '@shared/types';
+import { toast } from 'sonner';
 const categories = [
-  { name: 'Tất cả', value: 'all', icon: <Bath className="h-5 w-5" /> },
+  { name: 'Tất cả', value: 'all', icon: <LayoutGrid className="h-5 w-5" /> },
   { name: 'Thiết bị vệ sinh', value: 'Thiết bị vệ sinh', icon: <Bath className="h-5 w-5" /> },
   { name: 'Gạch ốp lát', value: 'Gạch ốp lát', icon: <BrickWall className="h-5 w-5" /> },
   { name: 'Bồn chứa nước', value: 'Bồn chứa nước', icon: <Droplets className="h-5 w-5" /> },
@@ -14,17 +17,30 @@ const categories = [
 ];
 export function ProductsPage() {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  React.useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 500);
-    return () => clearTimeout(timer);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const { items } = await api<{ items: Product[] }>('/api/products');
+        setProducts(items);
+      } catch (error) {
+        console.warn('API call for products failed, falling back to mock data.', error);
+        setProducts(MOCK_PRODUCTS as Product[]);
+        toast.error('Không thể tải sản phẩm. Hiển thị dữ liệu mẫu.');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
   }, []);
   const filteredProducts = useMemo(() => {
     if (activeCategory === 'all') {
-      return MOCK_PRODUCTS;
+      return products;
     }
-    return MOCK_PRODUCTS.filter(p => p.category === activeCategory);
-  }, [activeCategory]);
+    return products.filter(p => p.category === activeCategory);
+  }, [activeCategory, products]);
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="py-16 md:py-24">
